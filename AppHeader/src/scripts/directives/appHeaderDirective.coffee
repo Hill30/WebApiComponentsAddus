@@ -9,9 +9,9 @@ addus_module.directive 'appHeader', [
     replace: true
     transclude: true
     link: (scope, element, controller) ->
-      claims.get('applications', (res) ->
-        scope.applications = res.data.applications
-        scope.userName = res.data.userName )
+      claims.get({ claims: 'applications' }, (res) ->
+        scope.applications = res.applications
+        scope.userName = res.userName )
 ]
 
 addus_module.directive 'appHeaderCurrentItem', [

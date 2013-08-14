@@ -1,5 +1,5 @@
 addus_module
-  .factory('ClaimsService', ['$resource', ($resource) ->
+  .factory('claimsService', ['$resource', ($resource) ->
     $resource 'api/claims/:claims', { claims:'@claims' }, {
         get:     { method: 'GET' }
       }

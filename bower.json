@@ -1,0 +1,12 @@
+{
+  "author": "Addus",
+  "name": "Addus Components",
+  "description": "Addus  AngularJS extras",
+  "version": "0.0.1",
+  "main": "",
+  "dependencies": {
+    "angular": "~1.0.7", 
+    "angular-resource": "~1.0.7",
+    "angular-bootstrap": "~0.5.0"
+  }
+}

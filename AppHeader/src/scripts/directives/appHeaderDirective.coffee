@@ -5,7 +5,7 @@ addus_module.directive 'appHeader', [
   (console, claims) ->
 
     restrict:'E'
-    templateUrl: 'views/directives/appHeader.html'
+    templateUrl: 'views/vendors/appHeader.html'
     replace: true
     transclude: true
     link: (scope, element, controller) ->

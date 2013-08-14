@@ -1,11 +1,6 @@
-addus_module.service('claimsService',[
-    '$log','$resource',
-    (console, $resource) ->
-      Claims = $resource 'api/claims/:claims'
-      get = (claims) ->
-        Claims.get {claims: claims}
-
-      {
-        get
+addus_module
+  .factory('ClaimsService', ['$resource', ($resource) ->
+    $resource 'api/claims/:claims', { claims:'@claims' }, {
+        get:     { method: 'GET' }
       }
-  ])
+])

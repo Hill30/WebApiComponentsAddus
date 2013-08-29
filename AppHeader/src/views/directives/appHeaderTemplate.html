@@ -1,0 +1,51 @@
+<header>
+
+    <!--navbar-->
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <!--dropdown-->
+                    <div class="span2">
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Apps</a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="application in applications"><a ng-href="{{application.url}}">{{application.name}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--/dropdown-->
+
+
+                    <!--nav-->
+                    <div class="span6">
+
+                        <ul class="nav" ng-transclude>
+                        </ul>
+
+                    </div>
+                    <!--/nav-->
+
+                    <!--user-->
+                    <div class="span4">
+
+                        <div class="user pull-right">
+                            <span class="user-name">{{userName}}</span>
+                            <button type="submit" class="btn">Sign out <span class="icon-signout"></span></button>
+                        </div>
+
+                    </div>
+                    <!--/user-->
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--/navbar-->
+
+</header>

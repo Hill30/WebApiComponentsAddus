@@ -3,7 +3,7 @@ angular.module('app').directive 'appHeader', [
 	(console, userInfo) ->
 
 		restrict:'E'
-		templateUrl: 'views/vendors/directives/appHeaderTemplate.html'
+		templateUrl: 'views/vendors/templates/appHeaderTemplate.html'
 		replace: true
 		transclude: true
 		link: (scope, element, controller) ->

@@ -10,6 +10,7 @@ addus_module.directive 'appHeader', [
 		link: (scope, element, controller) ->
 			userInfo.get({}, (res) ->
 				scope.applications = res.availableApplications
+				scope.currentAppName = scope.applications[0].name || 'Apps'
 				scope.login = res.login )
 ]
 

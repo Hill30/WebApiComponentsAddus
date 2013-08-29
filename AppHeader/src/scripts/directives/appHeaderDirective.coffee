@@ -1,28 +1,26 @@
-addus_module = angular.module('addus', [])
+angular.module('app').directive 'appHeader', [
+	'$log', 'userInfoResource'
+	(console, userInfo) ->
 
-addus_module.directive 'appHeader', [
-  '$log', 'claimsService'
-  (console, claims) ->
-
-    restrict:'E'
-    templateUrl: 'views/vendors/appHeader.html'
-    replace: true
-    transclude: true
-    link: (scope, element, controller) ->
-      claims.get({ claims: 'applications' }, (res) ->
-        scope.applications = res.applications
-        scope.userName = res.userName )
+		restrict:'E'
+		templateUrl: 'views/vendors/directives/appHeaderTemplate.html'
+		replace: true
+		transclude: true
+		link: (scope, element, controller) ->
+			userInfo.get({}, (res) ->
+				scope.applications = res.availableApplications
+				scope.login = res.login )
 ]
 
-addus_module.directive 'appHeaderCurrentItem', [
-  '$log','$location'
-  (console, location) ->
-    restrict:'A'
-    link: (scope,element,attrs) ->
+angular.module('app').directive 'appHeaderCurrentItem', [
+	'$log','$location'
+	(console, location) ->
+		restrict:'A'
+		link: (scope,element,attrs) ->
 
-      scope.$watch (->location.$$url), (newLoc) ->
-        if ((newLoc.split("/")[1]) == (element.attr("href").split("#")[1]))
-          element.addClass "active"
-        else
-          element.removeClass "active"
+			scope.$watch (->location.$$url), (newLoc) ->
+				if ((newLoc.split("/")[1]) == (element.attr("href").split("#")[1]))
+					element.addClass "active"
+				else
+					element.removeClass "active"
 ]

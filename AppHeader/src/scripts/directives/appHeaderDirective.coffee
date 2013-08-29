@@ -13,7 +13,7 @@ addus_module.directive 'appHeader', [
 				scope.login = res.login )
 ]
 
-angular.module('app').directive 'appHeaderCurrentItem', [
+addus_module.directive 'appHeaderCurrentItem', [
 	'$log','$location'
 	(console, location) ->
 		restrict:'A'

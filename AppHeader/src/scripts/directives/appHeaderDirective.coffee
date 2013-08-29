@@ -1,4 +1,5 @@
-angular.module('app').directive 'appHeader', [
+addus_module = angular.module('addus', [])
+addus_module.directive 'appHeader', [
 	'$log', 'userInfoResource'
 	(console, userInfo) ->
 

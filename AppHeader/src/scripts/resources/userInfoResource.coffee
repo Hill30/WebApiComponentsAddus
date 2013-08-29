@@ -1,6 +1,8 @@
+addus_module = angular.module('addus', [])
+
 addus_module
-	.factory('claimsService', ['$resource', ($resource) ->
-		$resource 'api/claims/:claims', { claims:'@claims' }, {
-				get: { method: 'GET' }
-			}
-])
+	.factory('userInfoResource', ['$resource', ($resource) ->
+		$resource 'api/userinfo/', {}, {
+			get:	{ method: 'GET' }
+		}
+	])

@@ -6,36 +6,45 @@
 
             <div class="container">
 
-                <div class="row">
+                <div class="row-fluid">
+                    
+                    <!--logo-->
+                    <div class="span3">
 
-                    <!--dropdown-->
-                    <div class="span2">
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Apps</a>
-                            <ul class="dropdown-menu">
-                                <li ng-repeat="application in applications"><a ng-href="{{application.url}}">{{application.name}}</a></li>
-                            </ul>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <img class="logo" src="img/logo.png" alt="">
+                            </div>
+                            <div class="span6">
+                                <div class="dropdown divider-left divider-right">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Refund Manager <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="application in applications"><a ng-href="{{application.url}}">{{application.name}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                     <!--/dropdown-->
 
-
-                    <!--nav-->
-                    <div class="span6">
-
-                        <ul class="nav" ng-transclude>
-                        </ul>
-
-                    </div>
-                    <!--/nav-->
-
                     <!--user-->
-                    <div class="span4">
+                    <div class="span9">
 
-                        <div class="user pull-right">
-                            <span class="user-name">{{userName}}</span>
-                            <button type="submit" class="btn">Sign out <span class="icon-signout"></span></button>
+                        <!--navbar-aside-->
+                        <div class="navbar-aside">
+
+                            <div ng-transclude>
+                            </div>
+
+                            <div class="user divider-left pull-right">
+
+                                <span class="user-name">{{ login }}</span>
+                                <button type="submit" class="btn">Sign out <span class="icon-signout"></span></button>
+                            </div>
+
                         </div>
+                        <!--/navbar-aside-->
 
                     </div>
                     <!--/user-->

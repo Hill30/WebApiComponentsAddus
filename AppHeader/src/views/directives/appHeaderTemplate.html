@@ -1,4 +1,4 @@
-<header>
+<header class="appHeader">
 
     <!--navbar-->
     <div class="navbar navbar-fixed-top">
@@ -7,47 +7,52 @@
             <div class="container">
 
                 <div class="row-fluid">
-                    
+
                     <!--logo-->
-                    <div class="span3">
-
-                        <div class="row-fluid">
-                            <div class="span6">
-                                <img class="logo" src="img/logo.png" alt="">
-                            </div>
-                            <div class="span6">
-                                <div class="dropdown divider-left divider-right">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ currentAppName }} <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li ng-repeat="application in applications" ng-hide="application.name == currentAppName" ><a ng-href="{{application.url}}">{{application.name}}</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="span2">
+                        <img class="logo" src="img/logo.png" alt="">
                     </div>
-                    <!--/dropdown-->
+                    <!--logo-->
 
-                    <!--user-->
-                    <div class="span9">
+                    <!--wrap-->
+                    <div class="span10">
 
-                        <!--navbar-aside-->
-                        <div class="navbar-aside">
+                        <!--left-->
+                        <div class="pull-left">
 
-                            <div ng-transclude>
+                            <!--dropdown-->
+                            <div class="dropdown divider-left divider-right pull-left">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ currentAppName }} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="application in applications" ng-hide="application.name == currentAppName" ><a ng-href="{{application.url}}">{{application.name}}</a></li>
+                                </ul>
                             </div>
+                            <!--dropdown-->
 
+                            <!--transclude-->
+                            <div class="pull-left" ng-transclude>
+                            </div>
+                            <!--transclude-->
+
+                        </div>
+                        <!--left-->
+
+                        <!--right-->
+                        <div class="pull-right">
+
+                            <!--user-->
                             <div class="user divider-left pull-right">
-
                                 <span class="user-name">{{ login }}</span>
                                 <button type="submit" class="btn">Sign out <span class="icon-signout"></span></button>
                             </div>
+                            <!--/user-->
 
                         </div>
-                        <!--/navbar-aside-->
+                        <!--/right-->
+
 
                     </div>
-                    <!--/user-->
+                    <!--/wrap-->
 
                 </div>
 

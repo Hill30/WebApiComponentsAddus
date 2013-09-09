@@ -7,6 +7,6 @@
   "dependencies": {
     "angular": "~1.0.7", 
     "angular-resource": "~1.0.7",
-    "angular-bootstrap": "~0.5.0"	    	
+    "angular-bootstrap": "~0.5.0"
   }
 }

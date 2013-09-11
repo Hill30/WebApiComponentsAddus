@@ -20,7 +20,7 @@ addus_module.directive 'appHeaderCurrentItem', [
 		link: (scope,element,attrs) ->
 
 			scope.$watch (->location.$$url), (newLoc) ->
-				if ((newLoc.split("/")[1]) == (element.attr("href").split("#")[1]))
+				if ((newLoc.split(/\/|\?/)[1]) == (element.attr("href").split("#")[1]))
 					element.addClass "active"
 				else
 					element.removeClass "active"

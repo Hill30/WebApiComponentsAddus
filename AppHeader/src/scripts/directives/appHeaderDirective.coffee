@@ -2,7 +2,7 @@ addus_module.directive 'appHeader', [
 	'$log', 'userInfoResource'
 	(console, userInfo) ->
 
-		restrict:'E'
+		restrict:'AE'
 		templateUrl: 'views/vendors/templates/appHeaderTemplate.html'
 		replace: true
 		transclude: true

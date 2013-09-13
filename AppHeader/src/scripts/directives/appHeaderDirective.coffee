@@ -19,9 +19,17 @@ addus_module.directive 'appHeaderCurrentItem', [
 		restrict:'A'
 		link: (scope,element,attrs) ->
 
-			scope.$watch (->location.$$url), (newLoc) ->
-				if ((newLoc.split(/\/|\?/)[1]) == (element.attr("href").split("#")[1]))
-					element.addClass "active"
+			scope.$watch (->location.$$url), (newLoc) ->				
+
+				attrHref =  element.attr("href")
+				attrHrefHash = attrHref.indexOf("\#")
+				attrHrefClean =  attrHref.substr(attrHrefHash+1)
+
+				urlPathDash = "_" + newLoc
+				substrUrlLoc = urlPathDash.split(/\/|\?/)[1]
+
+				if attrHrefClean == substrUrlLoc
+				  element.addClass "active"
 				else
 					element.removeClass "active"
 ]

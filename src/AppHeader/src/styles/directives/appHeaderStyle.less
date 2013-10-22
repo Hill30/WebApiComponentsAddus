@@ -10,9 +10,11 @@
 /*appHeader*/
 .appHeader {
 
-    .navbar-inner {
-        .reset-filter();
+    .navbar {
+      min-height: 0;
     }
+
+
 
     /*divider*/
     [class*="divider"] {
@@ -111,9 +113,9 @@
             text-decoration: none;
             text-shadow: 0 1px 0 #ffffff;
 
-            .caret {
+            /*.caret {
                 margin-top: 8px;
-            }
+            }*/
         }
     }
     /*dropdown*/
@@ -125,6 +127,9 @@
         li {
             a {
                 .navbar-effects;
+                padding-top: 9px;
+                padding-bottom: 9px;
+
 
                 &.active {
                     background-color: @navbarLinkBackgroundActive;

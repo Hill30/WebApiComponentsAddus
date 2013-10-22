@@ -3,7 +3,7 @@ addus_module.directive 'appHeader', [
   (console, userInfo) ->
 
     restrict:'AE'
-    templateUrl: 'views/vendors/Addus/appHeaderTemplate.html'
+    templateUrl: 'views/vendors/templates/appHeaderTemplate.html'
     replace: true
     transclude: true
     link: (scope, element, attrs, controller) ->

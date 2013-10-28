@@ -1,0 +1,67 @@
+<header class="appHeader">
+
+    <!--navbar-->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+        <!--container-->
+        <div class="container">
+
+            <!--row-->
+            <div class="row">
+
+                <!--logo-->
+                <div class="col-md-2">
+                    <img class="logo" src="img/logo.png" alt="">
+                </div>
+                <!--logo-->
+
+                <!--wrap-->
+                <div class="col-md-10">
+
+                    <!--left-->
+                    <div class="pull-left">
+
+                        <!--dropdown-->
+                        <div class="dropdown divider-left divider-right pull-left">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ currentAppName }} <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="application in applications" ng-hide="application.name == currentAppName" ><a ng-href="{{application.url}}">{{application.name}}</a></li>
+                            </ul>
+                        </div>
+                        <!--dropdown-->
+
+                        <!--transclude-->
+                        <div class="pull-left" ng-transclude>
+                        </div>
+                        <!--transclude-->
+
+                    </div>
+                    <!--left-->
+
+                    <!--right-->
+                    <div class="pull-right">
+
+                        <!--user-->
+                        <div class="user divider-left pull-right">
+                            <span class="user-name">{{ login }}</span>
+                            <a href="api/logout" class="btn btn-default btn-sm">Sign out <span class="glyphicon-signout"></span></a>
+                        </div>
+                        <!--/user-->
+
+                    </div>
+                    <!--/right-->
+
+
+                </div>
+                <!--/wrap-->
+
+            </div>
+            <!--/row-->
+
+        </div>
+        <!--/container-->
+
+    </div>
+    <!--/navbar-->
+
+</header>

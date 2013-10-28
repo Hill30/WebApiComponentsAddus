@@ -12,9 +12,7 @@ addus_module.directive 'appHeader', [
           scope.applications = res.availableApplications
           angular.forEach scope.applications, (value, key) ->
             if value.name == attrs.appName
-              scope.currentAppName = value.name
-            else
-              scope.currentAppName = scope.applications[0].name
+              scope.currentAppName = value.name            
           scope.login = res.login
         )
 ]

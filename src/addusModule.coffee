@@ -1,1 +1,1 @@
-addus_module = angular.module('addus', [])
+angular.module('addus', [])

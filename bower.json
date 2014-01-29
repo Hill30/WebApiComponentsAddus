@@ -5,8 +5,8 @@
   "version": "0.0.1",
   "main": "",
   "dependencies": {
-    "angular": "~1.0.7", 
-    "angular-resource": "~1.0.7",
+    "angular": "1.2.10", 
+    "angular-resource": "1.2.10",
     "angular-bootstrap": "0.10.0"
   }
 }

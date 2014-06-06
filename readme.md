@@ -3,4 +3,6 @@
 
 * new HttpErrorsBox directive
 
+* minor updates in AppHeader directive
+
 * angular 1.2.16

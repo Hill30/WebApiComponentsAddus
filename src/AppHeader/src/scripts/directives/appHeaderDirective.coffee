@@ -9,11 +9,11 @@ angular.module('addus')
       link: (scope, element, attrs, controller) ->
         attrs.$observe "", () ->
           userInfo.get({}, (res) ->
-            console.log $location.url()
-            console.log $location.href()
+            url = "https://" + $location.host() + $location.url()
+            console.log url
             scope.applications = res.availableApplications
             angular.forEach scope.applications, (value, key) ->
-              if value.url == $location.url()
+              if value.url == url
                 scope.currentAppName = value.name            
             scope.login = res.login
           )

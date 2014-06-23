@@ -1,7 +1,7 @@
 angular.module('addus')
   .directive('appHeader', [
-    '$log', 'userInfoResource'
-    (console, userInfo) ->
+    '$log', 'userInfoResource', '$location'
+    (console, userInfo, $location) ->
       restrict:'AE'
       templateUrl: 'views/vendors/Addus/appHeaderTemplate.html'
       replace: true
@@ -11,7 +11,7 @@ angular.module('addus')
           userInfo.get({}, (res) ->
             scope.applications = res.availableApplications
             angular.forEach scope.applications, (value, key) ->
-              if value.name == attrs.appName
+              if value.url == $location.absUrl()
                 scope.currentAppName = value.name            
             scope.login = res.login
           )

@@ -12,9 +12,13 @@ angular.module('addus')
             url = window.location.href.split("#")[0]
             console.log url
             scope.applications = res.availableApplications
+            isFound = false
             angular.forEach scope.applications, (value, key) ->
               if value.url == url
-                scope.currentAppName = value.name            
+                isFound = true
+                scope.currentAppName = value.name
+            unless isFound
+              scope.currentAppName = attrs.appName             
             scope.login = res.login
           )
   ])

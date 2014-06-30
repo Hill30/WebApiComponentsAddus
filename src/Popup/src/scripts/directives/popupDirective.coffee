@@ -15,8 +15,8 @@ angular.module('addus')
 				popupObj.id = popupIdLast
 
 				ttl = parseInt popupObj.ttl, 10
-				if not ttl is -1
-					ttl = ttlDefault if not ttl > 0
+				if ttl isnt -1
+					ttl = if ttl > 0 then ttl else ttlDefault
 					$timeout(() ->
 						$scope.popup.close popupObj
 					, ttl)

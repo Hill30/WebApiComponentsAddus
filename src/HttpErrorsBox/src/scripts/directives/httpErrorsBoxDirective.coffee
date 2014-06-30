@@ -6,11 +6,7 @@ angular.module('addus')
 		transclude: true
 		link: (scope, element, attrs, controller) ->
 
-			alertHiderElement = element.find('[data-hide-button]')
 			dialogOpenerElement = element.find('#permissionDeniedDialogOpener')
-
-			hideAlert = () ->
-				element.css('display', 'none')
 
 			openDialog = () ->
 				$modal.open({
@@ -22,10 +18,8 @@ angular.module('addus')
 							$modalInstance.dismiss('cancel')
 				})
 
-			alertHiderElement.bind 'click', hideAlert
 			dialogOpenerElement.bind('click', openDialog)
 
 			scope.$on "$destroy", () ->
-				alertHiderElement.unbind 'click', hideAlert
 				dialogOpenerElement.unbind('click', openDialog)
 	])

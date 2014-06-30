@@ -13,10 +13,19 @@ angular.module('addus')
 			$scope.popup.show = (popupObj) ->
 				popupIdLast++
 				popupObj.id = popupIdLast
-				if not popupObj.doNotHide
+
+				ttl = parseInt popupObj.ttl, 10
+				if not ttl is -1
+					ttl = ttlDefault if not ttl > 0
 					$timeout(() ->
 						$scope.popup.close popupObj
-					, popupObj.ttl || ttlDefault)
+					, ttl)
+
+				if popupObj.hideDuplicates
+					for item, index in $scope.popup.list
+						if item.type is popupObj.type and item.text is popupObj.text
+							$scope.popup.close item
+
 				$scope.popup.list.push popupObj
 
 			$scope.popup.close = (popupObj) ->

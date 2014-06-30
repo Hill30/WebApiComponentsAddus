@@ -1,7 +1,7 @@
 angular.module('addus')
 	.directive('popup', ['$timeout', ($timeout) ->
 		restrict: 'AE'
-		templateUrl: 'views/vendors/Addus/popup.html'
+		templateUrl: 'views/vendors/Addus/popupTemplate.html'
 		replace: true
 		transclude: true
 		link: ($scope, element, attrs, controller) ->

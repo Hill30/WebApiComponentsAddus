@@ -4,17 +4,22 @@ angular.module('addus').service('userInfoService', [
 		userInfo = {}
 		permissions = []
 		isUserInfoInitialized = false
+		userInfoInitializedResult = {}
 
 		isInitialized = () -> isUserInfoInitialized
 
 		initializeAsync = () ->
 			deffered = $q.defer()
 
-			userInfoResource.get {}, (result) ->
-				isUserInfoInitialized = true
-				permissions = result.permissions
-				userInfo = result
-				deffered.resolve(result)
+			if isUserInfoInitialized
+				deffered.resolve(userInfoInitializedResult)
+			else
+				userInfoResource.get {}, (result) ->
+					userInfo = result
+					permissions = result.permissions
+					isUserInfoInitialized = true
+					userInfoInitializedResult = result
+					deffered.resolve(result)
 
 			deffered.promise
 

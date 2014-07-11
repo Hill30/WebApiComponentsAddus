@@ -6,7 +6,7 @@ angular.module('addus').directive('appHeader', [
 		replace: true
 		transclude: true
 		link: (scope, element, attrs, controller) ->
-			processResult = (res) ->
+			processUserInfo = (res) ->
 				url = window.location.href.split("#")[0]
 				console.log url
 				scope.applications = res.availableApplications
@@ -20,12 +20,11 @@ angular.module('addus').directive('appHeader', [
 				scope.login = res.login
 
 			attrs.$observe "", () ->
-				userInfo = userInfoService.getUserInfo()
-				if not userInfo.$resolved
-					userInfo.then (res) ->
-						processResult res
+				if userInfoService.isInitialized()
+					processUserInfo userInfoService.getUserInfo()
 				else
-					processResult userInfo
+					userInfoService.initializeAsync().then (userInfo) ->
+						processUserInfo userInfo
 
 ])
 .directive('appHeaderCurrentItem', [

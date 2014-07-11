@@ -7,20 +7,28 @@ angular.module('addus')
       replace: true
       transclude: true
       link: (scope, element, attrs, controller) ->
-        attrs.$observe "", () ->
-          userInfoService.getUserInfo().then((res) ->
-            url = window.location.href.split("#")[0]
-            console.log url
-            scope.applications = res.availableApplications
-            isFound = false
-            angular.forEach scope.applications, (value, key) ->
-              if value.url == url
-                isFound = true
-                scope.currentAppName = value.name
-            unless isFound
-              scope.currentAppName = attrs.appName             
-            scope.login = res.login
-          )
+
+				processResult = (res) ->
+					url = window.location.href.split("#")[0]
+					console.log url
+					scope.applications = res.availableApplications
+					isFound = false
+					angular.forEach scope.applications, (value, key) ->
+						if value.url == url
+							isFound = true
+							scope.currentAppName = value.name
+					unless isFound
+						scope.currentAppName = attrs.appName
+					scope.login = res.login
+
+				attrs.$observe "", () ->
+					userInfo = userInfoService.getUserInfo()
+					if not userInfo.$resolved
+						userInfo.then (res) ->
+							processResult res
+					else
+						processResult userInfo
+
   ])
   .directive('appHeaderCurrentItem', [
     '$log','$location'

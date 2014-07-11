@@ -1,14 +1,14 @@
 angular.module('addus')
   .directive('appHeader', [
-    '$log', 'userInfoResource'
-    (console, userInfo) ->
+    '$log', 'userInfoService'
+    (console, userInfoService) ->
       restrict:'AE'
       templateUrl: 'views/vendors/Addus/appHeaderTemplate.html'
       replace: true
       transclude: true
       link: (scope, element, attrs, controller) ->
         attrs.$observe "", () ->
-          userInfo.get({}, (res) ->
+          userInfoService.getUserInfo().then((res) ->
             url = window.location.href.split("#")[0]
             console.log url
             scope.applications = res.availableApplications

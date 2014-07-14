@@ -6,20 +6,14 @@ angular.module('addus').directive('appHeader', [
 		replace: true
 		transclude: true
 		link: (scope, element, attrs, controller) ->
-			processUserInfo = (result) ->
+			userInfoService.initializeAsync().then (userInfo) ->
 				scope.hasPermission = userInfoService.hasPermission
-				scope.applications = result.availableApplications
+				scope.applications = userInfo.availableApplications
 				scope.currentAppName = attrs.appName
 				url = window.location.href.split("#")[0]
 				for app in scope.applications
 					scope.currentAppName = app.name if app.url is url
-				scope.login = result.login
-
-			if userInfoService.isInitialized()
-				processUserInfo userInfoService.getUserInfo()
-			else
-				userInfoService.initializeAsync().then (userInfo) ->
-					processUserInfo userInfo
+				scope.login = userInfo.login
 
 ])
 .directive('appHeaderCurrentItem', [

@@ -6,18 +6,17 @@ angular.module('addus').directive('appHeader', [
 		replace: true
 		transclude: true
 		link: (scope, element, attrs, controller) ->
-			processUserInfo = (res) ->
+			processUserInfo = (result) ->
+				scope.hasPermission = userInfoService.hasPermission
 				url = window.location.href.split("#")[0]
-				console.log url
-				scope.applications = res.availableApplications
+				scope.applications = result.availableApplications
 				isFound = false
 				angular.forEach scope.applications, (value, key) ->
-					if value.url == url
+					if value.url is url
 						isFound = true
 						scope.currentAppName = value.name
-				unless isFound
-					scope.currentAppName = attrs.appName
-				scope.login = res.login
+				scope.currentAppName = attrs.appName if not isFound
+				scope.login = result.login
 
 			attrs.$observe "", () ->
 				if userInfoService.isInitialized()

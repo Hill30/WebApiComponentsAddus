@@ -8,22 +8,18 @@ angular.module('addus').directive('appHeader', [
 		link: (scope, element, attrs, controller) ->
 			processUserInfo = (result) ->
 				scope.hasPermission = userInfoService.hasPermission
-				url = window.location.href.split("#")[0]
 				scope.applications = result.availableApplications
-				isFound = false
-				angular.forEach scope.applications, (value, key) ->
-					if value.url is url
-						isFound = true
-						scope.currentAppName = value.name
-				scope.currentAppName = attrs.appName if not isFound
+				scope.currentAppName = attrs.appName
+				url = window.location.href.split("#")[0]
+				for app in scope.applications
+					scope.currentAppName = app.name if app.url is url
 				scope.login = result.login
 
-			attrs.$observe "", () ->
-				if userInfoService.isInitialized()
-					processUserInfo userInfoService.getUserInfo()
-				else
-					userInfoService.initializeAsync().then (userInfo) ->
-						processUserInfo userInfo
+			if userInfoService.isInitialized()
+				processUserInfo userInfoService.getUserInfo()
+			else
+				userInfoService.initializeAsync().then (userInfo) ->
+					processUserInfo userInfo
 
 ])
 .directive('appHeaderCurrentItem', [

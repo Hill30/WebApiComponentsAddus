@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module('addus')
 	.controller('templatesController', 
 		['$scope', '$log', '$modal', '$routeParams', '$filter', '$location', '$rootScope', 'debounce', 'templateResource'
 		($scope, console, $modal, $routeParams, $filter, $location, $rootScope, debounce, templateResource) ->

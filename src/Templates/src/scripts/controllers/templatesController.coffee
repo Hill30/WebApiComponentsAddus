@@ -94,7 +94,7 @@ angular.module('addus')
 					forceDataAsyncLoad()
 					$rootScope.popup.show
 						type: 'success'
-						text: "Group removed successfully."
+						text: "Template removed successfully."
 					$scope.pickedTemplate = {}
 
 			# start program

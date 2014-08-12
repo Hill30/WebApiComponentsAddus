@@ -80,11 +80,11 @@ angular.module('addus')
 					else
 						forceDataAsyncLoad()
 						$scope.pickedTemplate.id = res.id if res.id
-					###
+					
 					$rootScope.popup.show
 						type: 'success'
-						text: "User saved successfully."
-					###
+						text: "Template saved successfully."
+					
 					resetForm()
 					$scope.isNew = false
 

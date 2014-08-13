@@ -172,7 +172,7 @@ angular.module('addus').directive 'templates', [
 					revisionToRequestData
 
 			forceDataAsyncLoad = () ->
-				$scope.revisionToRequestData++
+				revisionToRequestData++
 
 			# pick user
 

@@ -3,7 +3,7 @@ angular.module('addus').directive 'templates', [
 	(console, $routeParams, $location, debounce, templatesResource) ->
 			
 		restrict: "E"
-		replace: true
+		replace: false
 		transclude: true
 		template: '
 <div class="main-container">

@@ -41,7 +41,7 @@ angular.module('addus').directive 'templates', [
 						</div>
 					</div>
 					<div class="search-results">
-						<div ui-scroll-viewport class="search-results-scroll" style="width: 200px; height: 300px; display: block; background-color: white;">
+						<div ui-scroll-viewport class="search-results-scroll">
 							<div class="search-results-item-wrap" ui-scroll="t in templates" is-loading="loading">
 								<span class="search-results-item"
 									  ng-class="{active: !isNew && t.id == pickedTemplate.id}"

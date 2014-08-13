@@ -200,7 +200,7 @@ angular.module('addus').directive 'templates', [
 
 				templatesResource.save $scope.pickedTemplate, (res) ->
 					if not $scope.isNew
-						$scope.originalTemplate[k] = v for k, v of $scope.pickedTemplate
+						forceDataAsyncLoad()
 					else
 						forceDataAsyncLoad()
 						$scope.pickedTemplate.id = res.id if res.id

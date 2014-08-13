@@ -27,7 +27,7 @@ angular.module('addus').directive 'templates', [
 											placeholder="Search"
 											class="form-control input-sm"
 											type="text"
-											ng-model="filter"
+											ng-model="nameFilter"
 											ng-change="setFilterDebounced()"
 											ng-disabled="false"
 											name="name">
@@ -136,10 +136,10 @@ angular.module('addus').directive 'templates', [
 			# work with route params
 
 			refreshRouteParams = () ->
-				$location.search if $scope.filter then { filter: $scope.filter } else {}
+				$location.search if $scope.nameFilter then { nameFilter: $scope.nameFilter } else {}
 
 			setFilterFromRouteParams = () ->
-				$scope.filter = $routeParams.filter if $routeParams.filter
+				$scope.nameFilter = $routeParams.nameFilter if $routeParams.nameFilter
 
 			# search filter
 
@@ -149,7 +149,7 @@ angular.module('addus').directive 'templates', [
 			, defaultDebounceTime, false)
 
 			$scope.clearFilter = () ->
-				$scope.filter = ''
+				$scope.nameFilter = ''
 				refreshRouteParams()
 				forceDataAsyncLoad()
 
@@ -161,7 +161,7 @@ angular.module('addus').directive 'templates', [
 					options = {}
 					options.offset = index
 					options.count = count
-					options.filter = $scope.filter if $scope.filter
+					options.nameFilter = $scope.nameFilter if $scope.nameFilter
 
 					successProccessed = (result) ->
 						success(result)

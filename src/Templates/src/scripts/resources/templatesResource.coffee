@@ -1,7 +1,6 @@
 angular.module('addus').factory('templatesResource', ['$resource', ($resource) ->
 		$resource 'api/templates/:id', {}, {
 			list:   { method: 'GET', isArray: true }
-			get:	{ method: 'GET' }
 			save: 	{ method: 'PUT' }
 			remove: { method: 'DELETE'}
 		}

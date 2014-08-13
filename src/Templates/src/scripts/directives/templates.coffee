@@ -198,7 +198,7 @@ angular.module('addus').directive 'templates', [
 				return if not $scope.pickedTemplate or not $scope.pickedTemplate.id
 				$scope.pickedTemplate.isNew = $scope.isNew
 
-				templateResource.save $scope.pickedTemplate, (res) ->
+				templatesResource.save $scope.pickedTemplate, (res) ->
 					if not $scope.isNew
 						$scope.originalTemplate[k] = v for k, v of $scope.pickedTemplate
 					else
@@ -214,7 +214,7 @@ angular.module('addus').directive 'templates', [
 
 			$scope.remove = () ->
 				return if not $scope.pickedTemplate or not $scope.pickedTemplate.id
-				templateResource.remove { id: $scope.pickedTemplate.id }, () ->
+				templatesResource.remove { id: $scope.pickedTemplate.id }, () ->
 					forceDataAsyncLoad()
 					$rootScope.popup.show
 						type: 'success'

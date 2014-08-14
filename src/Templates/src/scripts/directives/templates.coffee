@@ -184,7 +184,7 @@ angular.module('addus').directive 'templates', [
 
 			$scope.save = () ->
 				return if not $scope.pickedTemplate
-				$scope.pickedTemplate.isNew = $scope.isNew
+				#$scope.pickedTemplate.isNew = $scope.isNew
 
 				templatesResource.save $scope.pickedTemplate, (res) ->
 					if not $scope.isNew

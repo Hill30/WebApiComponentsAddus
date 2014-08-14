@@ -59,18 +59,6 @@ angular.module('addus').directive 'templates', [
 		<form name="form" novalidate>
 			<div class="form-horizontal" role="form">
 				<div class="form-group">
-					<label for="id" class="col-sm-4 control-label">Id:</label>
-					<div class="col-sm-8">
-						<input
-								class="form-control"
-								type="text"
-								ng-disabled="!pickedTemplate"
-								ng-model="pickedTemplate.id"
-								id="templateId"
-								required><span class="required-flag"></span>
-					</div>
-				</div>
-				<div class="form-group">
 					<label for="name" class="col-sm-4 control-label">Name:</label>
 					<div class="col-sm-8">
 						<input
@@ -195,7 +183,7 @@ angular.module('addus').directive 'templates', [
 				resetForm()
 
 			$scope.save = () ->
-				return if not $scope.pickedTemplate or not $scope.pickedTemplate.id
+				return if not $scope.pickedTemplate
 				$scope.pickedTemplate.isNew = $scope.isNew
 
 				templatesResource.save $scope.pickedTemplate, (res) ->
@@ -213,7 +201,7 @@ angular.module('addus').directive 'templates', [
 					$scope.isNew = false
 
 			$scope.remove = () ->
-				return if not $scope.pickedTemplate or not $scope.pickedTemplate.id
+				return if not $scope.pickedTemplate
 				templatesResource.remove { id: $scope.pickedTemplate.id }, () ->
 					forceDataAsyncLoad()
 					$rootScope.popup.show

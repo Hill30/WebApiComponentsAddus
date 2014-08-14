@@ -5,6 +5,7 @@ angular.module('addus').directive 'templates', [
 		restrict: "E"
 		replace: false
 		transclude: true
+		scope: {}
 		template: '
 <div class="main-container">
 <div class="row">

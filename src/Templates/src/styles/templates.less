@@ -1,84 +1,90 @@
-/*search-results*/
-.search-results {
+templates {
 
-  .search-results-scroll {
-    overflow-y: auto;
-    max-height: 260px;
-    margin: 0;
-    padding: 0;
-    border-top: 1px lighten(@borderColor,2%) dotted;
+  /*search-results*/
+  .search-results {
 
-    .search-results-item-wrap {
+    .search-results-scroll {
+      overflow-y: auto;
+      max-height: 260px;
       margin: 0;
-      padding: 2px 0;
-      list-style: none;
-      border-bottom: 1px lighten(@borderColor,5%) dotted;
+      padding: 0;
+      border-top: 1px lighten(@borderColor,2%) dotted;
 
-      &:last-child {
-        border-bottom: none;
-      }
+      .search-results-item-wrap {
+        margin: 0;
+        padding: 2px 0;
+        list-style: none;
+        border-bottom: 1px lighten(@borderColor,5%) dotted;
 
-      .search-results-item {
-        .transition(all .5s ease-out);
-        border-radius: 3px;
-        cursor: pointer;
-        display: block;
-        padding: 2px 5px;
-
-        &:hover, &:active {
-          background: lighten(@borderColor,5%);
+        &:last-child {
+          border-bottom: none;
         }
 
+        .search-results-item {
+          .transition(all .5s ease-out);
+          border-radius: 3px;
+          cursor: pointer;
+          display: block;
+          padding: 2px 5px;
+
+          &:hover, &:active {
+            background: lighten(@borderColor,5%);
+          }
+
+          &.active {
+            background: @accentColor;
+            color: #fff;
+          }
+        }
+      }
+
+
+    }
+
+    ul {
+      li {
         &.active {
           background: @accentColor;
-          color: #fff;
-        }
-      }
-    }
-
-
-  }
-
-  ul {
-    li {
-      &.active {
-        background: @accentColor;
-      }
-
-      &:first-child {
-        border-top: none;
-      }
-
-      a {
-        &:link, &:visited {
-          color: @text-color;
         }
 
-        &:hover, &:active {
-          color: @accentColor;
-          text-decoration: none;
+        &:first-child {
+          border-top: none;
+        }
+
+        a {
+          &:link, &:visited {
+            color: @text-color;
+          }
+
+          &:hover, &:active {
+            color: @accentColor;
+            text-decoration: none;
+          }
         }
       }
     }
   }
-}
-/*!search-results*/
+  /*!search-results*/
 
-/*filters*/
-templates {
+  /*filters*/
+
   .filters {
-    .form-group-section>.control-label {
+    .form-group-section > .control-label {
       .glyphicon {
-        color: inherit!important;
-        top: 1px!important;
+        color: inherit !important;
+        top: 1px !important;
       }
     }
   }
-}
-/*!filters*/
 
-/*form-horizontal*/
-.form-horizontal {
-  padding: 5px;
+  /*!filters*/
+
+  /*form-horizontal*/
+  .form-messages {
+    .form-horizontal {
+      padding: 5px;
+    }
+  }
+  /*!form-horizontal*/
+
 }
-/*!form-horizontal*/

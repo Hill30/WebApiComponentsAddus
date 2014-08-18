@@ -1,5 +1,7 @@
 angular.module('addus').controller 'templatesController', [
-	'$scope', '$log',
-	($scope, console) ->
+	'$scope', '$log', '$rootScope',
+	($scope, console, $rootScope) ->
+		$rootScope.dismissNewARNotice()
+		$rootScope.currentScreen = 'templates'
 		console.log "start templates"
 ]

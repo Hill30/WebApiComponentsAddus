@@ -17,7 +17,7 @@ angular.module('addus').directive 'templates', [
 					<div class="form-group form-group-section">
 						<label class="control-label">
 							<span class="glyphicon glyphicon-search"></span> Templates:
-							<button class="pull-right btn btn-xs btn-primary" ng-click="newTemplate()" ng-hide="!userInfo.hasPermission(\'ServiceTracker.EditTemplates\')" ng-disabled="false">
+							<button class="pull-right btn btn-xs btn-primary" ng-click="newTemplate()" ng-disabled="false">
 								<span class="glyphicon glyphicon-plus"></span>
 							</button>
 						</label>
@@ -99,15 +99,14 @@ angular.module('addus').directive 'templates', [
 			<div class="form-actions">
 				<div class="row">
 					<div class="col-sm-6">
-						<button class="btn btn-default" ng-disabled="!pickedTemplate" ng-hide="!userInfo.hasPermission(\'ServiceTracker.EditTemplates\')" ng-click="remove()">
+						<button class="btn btn-default" ng-disabled="!pickedTemplate" ng-click="remove()">
 							Remove <span class="glyphicon glyphicon-remove-2"></span>
 						</button>
 					</div>
 					<div class="col-sm-6 text-right">
 						<button class="btn btn-default" ng-click="cancel()" ng-disabled="!form.$dirty">Cancel</button>
 						<button class="btn btn-primary" type="submit" ng-disabled="form.$invalid || !form.$dirty"
-								ng-click="save()"
-								ng-hide="!userInfo.hasPermission(\'ServiceTracker.EditTemplates\')">
+								ng-click="save()">
 							Save <span class="glyphicon glyphicon-checkmark-2"></span>
 						</button>
 					</div>

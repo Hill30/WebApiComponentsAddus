@@ -2,7 +2,7 @@ angular.module('addus').directive('appHeader', [
 	'$log', 'userInfoService'
 	(console, userInfoService) ->
 		restrict: 'AE'
-		templateUrl: 'views/vendors/Addus/appHeaderTemplate.html'
+		templateUrl: 'vendors/Addus/src/directives/AppHeader/views/appHeaderTemplate.html'
 		replace: true
 		transclude: true
 		link: (scope, element, attrs, controller) ->

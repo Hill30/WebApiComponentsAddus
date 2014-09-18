@@ -1,7 +1,7 @@
 angular.module('addus')
 	.directive('httpErrorsBox', ['$modal', ($modal) ->
 		restrict: 'AE'
-		templateUrl: 'vendors/Addus/src/HttpErrorsBox/views/httpErrorsBoxTemplate.html'
+		templateUrl: 'vendors/Addus/directives/HttpErrorsBox/views/httpErrorsBoxTemplate.html'
 		replace: true
 		transclude: true
 		link: (scope, element, attrs, controller) ->
@@ -10,7 +10,7 @@ angular.module('addus')
 
 			openDialog = () ->
 				$modal.open({
-					templateUrl: 'vendors/Addus/src/HttpErrorsBox/views/permissionDeniedDialogTemplate.html',
+					templateUrl: 'vendors/Addus/directives/HttpErrorsBox/views/permissionDeniedDialogTemplate.html',
 					controller: ($scope, $modalInstance) ->
 						$scope.reload = () ->
 							location.reload()

@@ -1,11 +1,3 @@
-@import "variables.less";
-@import "mixins.less";
-
-@accentColor: #009755;
-@borderColor: lighten(@gray,55%);
-@errorColor: #f00;
-@white: #fff;
-
 @media (max-width: 1170px) {
   body {
     padding-top: 0 !important;
@@ -81,12 +73,11 @@
 
   /*navbar-effects*/
   .navbar-effects {
-
-    .transition(all 0.3s ease);
+    transition: all 0.3s ease;
 
     &:hover {
-      background-color: @accentColor;
-      color: @white;
+      background-color: #009755;
+      color: #fff;
 
       [class^='icon-'],[class*=' icon-'] {
         text-shadow: none;
@@ -99,10 +90,10 @@
 
     &.dropdown-toggle {
       .caret {
-        .transition(border-top-color 0.3s ease);
+        transition: border-top-color 0.3s ease;
       }
       &:hover .caret {
-        border-top-color: @white;
+        border-top-color: #fff;
       }
     }
   }
@@ -145,8 +136,8 @@
 
 
         &.active {
-          background-color: @navbarLinkBackgroundActive;
-          color: @navbarLinkColorActive;
+          background-color: #e5e5e5;
+          color: #555;
           cursor: default;
           box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125) inset;
         }
@@ -164,7 +155,7 @@
       padding: 11px 15px 3px 15px;
       font-size: 11px;
       font-weight: bold;
-      line-height: @baseLineHeight;
+      line-height: 20px;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 

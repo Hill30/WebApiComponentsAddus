@@ -1,3 +1,7 @@
+@tmp-gray: #555;
+@tmp-border-color: lighten(@tmp-gray,55%);
+@tmp-accent-color: #009755;
+
 templates {
 
   /*search-results*/
@@ -8,13 +12,13 @@ templates {
       max-height: 260px;
       margin: 0;
       padding: 0;
-      border-top: 1px lighten(@borderColor,2%) dotted;
+      border-top: 1px lighten(@tmp-border-color,2%) dotted;
 
       .search-results-item-wrap {
         margin: 0;
         padding: 2px 0;
         list-style: none;
-        border-bottom: 1px lighten(@borderColor,5%) dotted;
+        border-bottom: 1px lighten(@tmp-border-color,5%) dotted;
 
         &:last-child {
           border-bottom: none;
@@ -28,11 +32,11 @@ templates {
           padding: 2px 5px;
 
           &:hover, &:active {
-            background: lighten(@borderColor,5%);
+            background: lighten(@tmp-border-color,5%);
           }
 
           &.active {
-            background: @accentColor;
+            background: @tmp-accent-color;
             color: #fff;
           }
         }
@@ -44,7 +48,7 @@ templates {
     ul {
       li {
         &.active {
-          background: @accentColor;
+          background: @tmp-accent-color;
         }
 
         &:first-child {
@@ -53,11 +57,11 @@ templates {
 
         a {
           &:link, &:visited {
-            color: @text-color;
+            color: #333;
           }
 
           &:hover, &:active {
-            color: @accentColor;
+            color: @tmp-accent-color;
             text-decoration: none;
           }
         }

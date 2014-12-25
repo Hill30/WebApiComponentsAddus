@@ -1,6 +1,8 @@
 ### v1.0.* release changelog
 
-* Repository major refactoring
+* repository major refactoring
+* httpErrorsBox permissionDeniedDialog refactoring
+
 
 ### v0.2.* release changelog
 
@@ -8,11 +10,11 @@
 
 * deep appHeader refactor
 
-* Templates directive and resource
+* templates directive and resource
 
 ### v0.1.0 release changelog
 
-* new HttpErrorsBox directive
+* new httpErrorsBox directive
 
 * minor updates in appHeader directive
 

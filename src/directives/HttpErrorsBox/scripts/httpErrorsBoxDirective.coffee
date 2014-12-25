@@ -4,12 +4,14 @@ angular.module('addus').directive('httpErrorsBox', ['$modal', ($modal) ->
 	replace: true
 	transclude: true
 	link: (scope, element, attrs, controller) ->
-		isOpened = false
-		dialogOpenerElement = element.find('#permissionDeniedDialogOpener')
 
-		openDialog = () ->
-			return if isOpened
-			isOpened = true
+		scope.httpErrorsBox = {}
+		scope.httpErrorsBox.permissionDeniedDialog = {}
+
+		isPermissionDeniedDialogOpened = false
+		scope.httpErrorsBox.permissionDeniedDialog.openDialog  = () ->
+			return if isPermissionDeniedDialogOpened
+			isPermissionDeniedDialogOpened = true
 
 			$modal.open({
 				templateUrl: 'vendors/Addus/src/directives/HttpErrorsBox/views/permissionDeniedDialogTemplate.html',
@@ -19,11 +21,6 @@ angular.module('addus').directive('httpErrorsBox', ['$modal', ($modal) ->
 					$scope.cancel = () ->
 						$modalInstance.dismiss('cancel')
 					$modalInstance.result.then null, () ->
-						isOpened = false
+						isPermissionDeniedDialogOpened = false
 			})
-
-		dialogOpenerElement.bind('click', openDialog)
-
-		scope.$on "$destroy", () ->
-			dialogOpenerElement.unbind('click', openDialog)
 ])

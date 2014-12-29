@@ -1,3 +1,112 @@
-<div ng-controller="templatesController">
-	<templates></templates>
+<div ng-controller="templatesController" class="templates">
+	<div class="main-container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="aside">
+					<div class="filters filters-users-page" ng-class="{'element-disabled': false}">
+						<form>
+							<fieldset>
+								<div class="form-group form-group-section">
+									<label class="control-label">
+										<span class="glyphicon glyphicon-search"></span> Templates:
+										<button class="pull-right btn btn-xs btn-primary" ng-click="newTemplate()" ng-disabled="false">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+									</label>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-11">
+												<input
+														placeholder="Search"
+														class="form-control input-sm"
+														type="text"
+														ng-model="nameFilter"
+														ng-change="setFilterDebounced()"
+														ng-disabled="false"
+														name="name">
+											</div>
+											<div class="col-xs-1 text-center">
+												<a ng-click="clearFilter()" class="control-remove" tabindex="-1">
+													<span class="glyphicon glyphicon-remove-2"></span>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="search-results">
+									<div ui-scroll-viewport class="search-results-scroll">
+										<div class="search-results-item-wrap" ui-scroll="t in templates" is-loading="loading">
+											<span class="search-results-item"
+												  ng-class="{active: !isNew && t.id == pickedTemplate.id}"
+												  ng-click="pickTemplate(t)">{{t.name}}</span>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-messages" ng-class="{'element-disabled': !pickedTemplate}">
+					<form name="form" novalidate>
+						<div class="form-horizontal" role="form">
+							<div class="form-group">
+								<label for="templateName" class="col-sm-4 control-label">Name:</label>
+								<div class="col-sm-8">
+									<input
+											class="form-control"
+											type="text"
+											ng-disabled="!pickedTemplate"
+											ng-model="pickedTemplate.name"
+											id="templateName"
+											required><span class="required-flag"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="description" class="col-sm-4 control-label">Description:</label>
+								<div class="col-sm-8">
+									<input
+											class="form-control"
+											type="text"
+											ng-disabled="!pickedTemplate"
+											ng-model="pickedTemplate.description"
+											id="description">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="text" class="col-sm-4 control-label">Text:</label>
+								<div class="col-sm-8">
+									<textarea
+											class="form-control"
+											type="text"
+											ng-disabled="!pickedTemplate"
+											ng-model="pickedTemplate.text"
+											id="text"
+											required>
+									</textarea><span class="required-flag"></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-sm-6">
+									<button class="btn btn-default" ng-disabled="!pickedTemplate" ng-click="remove()">
+										Remove <span class="glyphicon glyphicon-remove-2"></span>
+									</button>
+								</div>
+								<div class="col-sm-6 text-right">
+									<button class="btn btn-default" ng-click="cancel()" ng-disabled="!form.$dirty">Cancel</button>
+									<button class="btn btn-primary" type="submit" ng-disabled="form.$invalid || !form.$dirty"
+											ng-click="save()">
+										Save <span class="glyphicon glyphicon-checkmark-2"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

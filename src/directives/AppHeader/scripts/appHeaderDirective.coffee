@@ -21,8 +21,7 @@ angular.module('addus').directive('appHeader', [
 		(console, location) ->
 			restrict: 'A'
 			link: (scope, element, attrs) ->
-				scope.$watch (->
-					location.$$url), (newLoc) ->
+				scope.$watch (() -> location.$$url), (newLoc) ->
 					attrHref = element.attr("href")
 					attrHrefHash = attrHref.indexOf("\#")
 					attrHrefClean = attrHref.substr(attrHrefHash + 1)

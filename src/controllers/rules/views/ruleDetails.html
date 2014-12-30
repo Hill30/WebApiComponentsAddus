@@ -1,0 +1,163 @@
+<div class="rule-details" ng-class="{'element-disabled': !pickedRule}">
+
+	<!--form-->
+	<form name="ruleForm" novalidate>
+
+		<fieldset>
+
+			<!--last-edited-->
+			<div class="last-edited"
+				 ng-show="pickedRule && pickedRule.ruleSource &&
+				  (pickedRule.ruleSource.updatedByName || pickedRule.ruleSource.updatedAt)">
+				Last edited
+				<span ng-show="pickedRule.ruleSource.updatedByName">by {{pickedRule.ruleSource.updatedByName}}</span>
+				<span ng-show="pickedRule.updatedAtAsString">on {{pickedRule.updatedAtAsString}}</span>
+			</div>
+			<!--/last-edited-->
+
+			<!--form-group-->
+			<div class="form-group">
+				<label for="RuleName">Name</label>
+				<input
+						class="form-control"
+						type="text"
+						id="RuleName"
+						ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules')"
+						ng-model="pickedRule.name">
+			</div>
+			<!--/form-group-->
+
+			<!--form-group-->
+			<div class="form-group">
+				<label for="Implements">Implements</label>
+				<input
+						class="form-control"
+						type="text"
+						id="Implements"
+						name="Implements"
+						disabled="disabled"
+						ng-model="pickedRule.ruleSource.implements">
+			</div>
+			<!--/form-group-->
+
+			<!--form-group-->
+			<div class="form-group">
+				<label for="Requires">Requires</label>
+				<textarea
+						class="form-control rule-editor-text-editor"
+						disabled="disabled"
+						id="Requires"
+						name="Requires">{{pickedRule.requiresAsText}}</textarea>
+			</div>
+			<!--/form-group-->
+
+			<hr>
+
+			<!--form-group-->
+			<div class="form-group">
+				<label for="Properties">Properties</label>
+
+				<!--rule-details-prop-->
+				<div class="rule-details-prop" id="Properties">
+
+					<!--row-->
+					<div class="rule-details-prop-row" ng-repeat="prop in pickedRule.ruleType.properties">
+
+						<div class="rule-details-prop-label">{{prop.name}}:</div>
+
+						<div ng-switch="prop.friendlyType">
+
+							<div ng-switch-when="string" class="rule-details-prop-value">
+								<input
+										type="text"
+										class="form-control"
+										ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules')"
+										ng-model="pickedRule.propertiesDefaultValues[prop.camelName]">
+							</div>
+
+							<div ng-switch-when="bool" class="rule-details-prop-value">
+								<input
+										type="checkbox"
+										class="checkbox"
+										ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules')"
+										ng-model="pickedRule.propertiesDefaultValues[prop.camelName]">
+							</div>
+
+							<div ng-switch-when="enum" class="rule-details-prop-value">
+								<select
+										class="form-control"
+										ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules')"
+										ng-model="pickedRule.propertiesDefaultValues[prop.camelName]"
+										ng-options="item.id as item.value for item in prop.enumValues">
+								</select>
+							</div>
+
+						</div>
+					</div>
+					<!--/row-->
+
+				</div>
+				<!--/rule-details-prop-->
+
+			</div>
+			<!--/form-group-->
+
+			<!--form-group-->
+			<div class="form-group">
+				<label for="Usings">Usings</label>
+				<textarea
+						class="form-control rule-editor-text-editor"
+						id="Usings"
+						name="Usings"
+						ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules')"
+						ng-model="pickedRule.usingsAsText"></textarea>
+			</div>
+			<!--/form-group-->
+
+			<!--form-group-->
+			<div class="form-group">
+				<label for="ruleText">Text</label>
+				<textarea
+						class="form-control rule-editor-text-editor textarea-big-height"
+						type="text"
+						id="ruleText"
+						name="ruleText"
+						ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules')"
+						ng-model="pickedRule.ruleSource.ruleText"></textarea>
+			</div>
+			<!--/form-group-->
+
+			<!--form-actions-->
+			<div class="form-actions">
+				<div class="row">
+					<div class="col-sm-6">
+						<button class="btn btn-primary" ng-click="activate()"
+								ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules') || !ruleForm.$pristine">
+							<span ng-show="!pickedRule.isActive">Enable Rule</span>
+							<span ng-show="pickedRule.isActive">Disable Rule</span>
+						</button>
+					</div>
+					<div class="col-sm-6 text-right">
+						<button class="btn btn-default" ng-click="cancel()"
+								ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules') || !ruleForm.$dirty">
+							Cancel
+						</button>
+						<button class="btn btn-primary" type="submit" ng-click="save()"
+								ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules') ||
+								ruleForm.$invalid || !ruleForm.$dirty">
+							Save <span class="glyphicon glyphicon-checkmark-2"></span>
+						</button>
+					</div>
+				</div>
+
+			</div>
+			<!--/form-actions-->
+
+		</fieldset>
+
+	</form>
+	<!--/form-->
+
+	<div class="overlay-disabled"></div>
+
+</div>

@@ -1,0 +1,45 @@
+<div ng-controller="rulesController">
+
+	<!--main-container-->
+	<div class="main-container main-container-layout-search">
+
+		<!--row-->
+		<div class="row">
+
+			<!--col-left-->
+			<div class="col-sm-3">
+
+				<!--aside-->
+				<div class="aside">
+
+					<!--ruleList-->
+					<div ng-include="'views/ruleList.html'"></div>
+					<!--/ruleList-->
+
+				</div>
+				<!--/aside-->
+
+			</div>
+			<!--/col-left-->
+
+			<!--col-right-->
+			<div class="col-sm-6">
+
+				<!--ruleDetails-->
+				<div ng-show="pickedRule" ng-include="'views/ruleDetails.html'"></div>
+				<!--/ruleDetails-->
+
+				<div ng-show="!pickedRule" class="rule-details-empty">
+					Please, select a rule...
+				</div>
+
+			</div>
+			<!--/col-right-->
+
+		</div>
+		<!--/row-->
+
+	</div>
+	<!--/main-container-->
+
+</div>

@@ -1,0 +1,86 @@
+<div class="filters filters-users-page" ng-class="{'element-disabled': false}">
+
+	<!--form-->
+	<form>
+
+		<!--fieldset-->
+		<fieldset>
+
+			<!--search-->
+			<div class="form-group form-group-section">
+
+				<!--control-label-->
+				<label class="control-label">
+					<span class="glyphicon glyphicon-search"></span> Rules:
+
+					<div class="btn-wrap">
+						<button class="btn btn-xs btn-primary" ng-click="newRule()"
+								ng-disabled="!userInfo.hasPermission('ServiceTracker.EditRules') || true">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</div>
+
+				</label>
+				<!--/control-label-->
+
+				<!--form-rule-->
+				<div class="form-group">
+
+					<!--row-->
+					<div class="row">
+
+						<!--col-->
+						<div class="col-xs-11">
+
+							<input
+									placeholder="Search"
+									class="form-control input-sm"
+									type="text"
+									ng-model="shared.nameFilter"
+									ng-change="setFilterDebounced()"
+									name="name">
+
+						</div>
+						<!--/col-->
+
+						<!--col-->
+						<div class="col-xs-1 text-center">
+
+							<a ng-click="clearFilter()" class="control-remove" tabindex="-1">
+								<span class="glyphicon glyphicon-remove-2"></span>
+							</a>
+
+						</div>
+						<!--/col-->
+
+					</div>
+					<!--/row-->
+
+				</div>
+				<!--/form-rule-->
+
+			</div>
+			<!--/search-->
+
+			<!--search-results-->
+			<div class="search-results">
+				<div ui-scroll-viewport class="search-results-scroll">
+					<div class="search-results-item-wrap" ui-scroll="rule in rules">
+						<span class="search-results-item"
+							  ng-class="{'active': !isNew && rule.id == pickedRule.id, 'search-results-disabled': !rule.isActive}"
+							  ng-click="pickRule(rule)"
+							  >{{ rule.name }}
+
+						</span>
+					</div>
+				</div>
+			</div>
+			<!--/search-results-->
+
+		</fieldset>
+		<!--fieldset-->
+
+	</form>
+	<!--/form-->
+
+</div>

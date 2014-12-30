@@ -1,4 +1,4 @@
-angular.module('addus').controller 'templatesController', [
+angular.module('addus').controller 'rulesController', [
 	'$scope', '$rootScope', '$routeParams', '$location', 'debounce', 'rulesResource'
 	($scope, $rootScope, $routeParams, $location, debounce, rulesResource) ->
 

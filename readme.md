@@ -1,3 +1,9 @@
+### v1.1.* release changelog
+
+* rules ctrl
+
+* popup refactoring (due to WebApiComponents v1.1.0)
+
 ### v1.0.* release changelog
 
 * repository major refactoring

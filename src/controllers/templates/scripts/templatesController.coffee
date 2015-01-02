@@ -1,6 +1,6 @@
 angular.module('addus').controller 'templatesController', [
-	'$scope', '$rootScope', '$log', '$routeParams', '$location', 'debounce', 'templatesResource'
-	($scope, $rootScope, console, $routeParams, $location, debounce, templatesResource) ->
+	'$scope', '$rootScope', '$log', '$routeParams', '$location', 'debounce', 'popup', 'templatesResource'
+	($scope, $rootScope, console, $routeParams, $location, debounce, popup, templatesResource) ->
 
 		$rootScope.dismissNewARNotice()
 		$rootScope.currentScreen = 'templates'
@@ -80,17 +80,15 @@ angular.module('addus').controller 'templatesController', [
 				$scope.pickedTemplate.id = res.id if $scope.isNew and res.id
 				$scope.isNew = false
 				resetForm()
-
-				if $rootScope.popup and $rootScope.popup.show
-					$rootScope.popup.show
-						type: 'success'
-						text: "Template saved successfully."
+				popup.show
+					type: 'success'
+					text: "Template saved successfully."
 
 		$scope.remove = () ->
 			return if not $scope.pickedTemplate
 			templatesResource.remove { id: $scope.pickedTemplate.id }, () ->
 				forceDataAsyncLoad()
-				$rootScope.popup.show
+				popup.show
 					type: 'success'
 					text: "Template removed successfully."
 				$scope.pickedTemplate = {}

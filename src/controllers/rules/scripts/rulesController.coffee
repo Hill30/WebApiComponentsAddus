@@ -1,6 +1,6 @@
 angular.module('addus').controller 'rulesController', [
-	'$scope', '$rootScope', '$routeParams', '$location', 'debounce', 'rulesResource'
-	($scope, $rootScope, $routeParams, $location, debounce, rulesResource) ->
+	'$scope', '$rootScope', '$routeParams', '$location', 'debounce', 'popup', 'rulesResource'
+	($scope, $rootScope, $routeParams, $location, debounce, popup, rulesResource) ->
 
 		$rootScope.dismissNewARNotice()
 
@@ -98,7 +98,7 @@ angular.module('addus').controller 'rulesController', [
 
 		processChanges = (result) ->
 			if result.failed
-				$rootScope.popup.show
+				popup.show
 					type: 'warning'
 					text: "Rule compilation " + result.message
 					ttl: -1
@@ -107,7 +107,7 @@ angular.module('addus').controller 'rulesController', [
 			$scope.pickedRule = null
 			resetForm()
 			$scope.isNew = false
-			$rootScope.popup.show
+			popup.show
 				type: 'success'
 				text: "Rule saved successfully."
 

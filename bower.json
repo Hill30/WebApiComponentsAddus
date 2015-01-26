@@ -1,12 +1,13 @@
 {
-  "author": "Addus",
-  "name": "Addus Components",
-  "description": "Addus AngularJS extras",
-  "version": "0.1.0",
-  "main": "",
-  "dependencies": {
-    "angular": "1.2.16", 
-    "angular-resource": "1.2.16",
-    "angular-bootstrap": "0.10.0"
-  }
+	"author": "Addus",
+	"name": "Addus Components",
+	"description": "Addus AngularJS extras",
+	"version": "1.1.1",
+	"main": "",
+	"dependencies": {
+		"angular": "1.2.16",
+		"angular-resource": "1.2.16",
+		"angular-bootstrap": "0.10.0",
+		"ui-scroll": "1.0.2"
+	}
 }

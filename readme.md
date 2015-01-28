@@ -4,6 +4,8 @@
 
 * popup refactoring (due to WebApiComponents v1.1.0)
 
+* add ui-scroll (v1.0.3) as bower dependency
+
 ### v1.0.* release changelog
 
 * repository major refactoring

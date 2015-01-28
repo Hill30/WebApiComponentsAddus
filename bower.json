@@ -8,6 +8,6 @@
 		"angular": "1.2.16",
 		"angular-resource": "1.2.16",
 		"angular-bootstrap": "0.10.0",
-		"ui-scroll": "1.0.2"
+		"ui-scroll": "1.0.3"
 	}
 }

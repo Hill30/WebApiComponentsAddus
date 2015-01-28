@@ -2,7 +2,7 @@
 	"author": "Addus",
 	"name": "Addus Components",
 	"description": "Addus AngularJS extras",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"main": "",
 	"dependencies": {
 		"angular": "1.2.16",

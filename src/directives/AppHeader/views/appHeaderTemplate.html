@@ -22,7 +22,7 @@
                     <div class="pull-left">
 
                         <!--dropdown-->
-                        <div dropdown class="divider-left divider-right pull-left">
+                        <div dropdown class="dropdown divider-left divider-right pull-left">
                             <a href="#" class="dropdown-toggle" dropdown-toggle> {{ currentAppName }} <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li ng-repeat="application in applications" ng-hide="application.name == currentAppName" ><a ng-href="{{application.url}}">{{application.name}}</a></li>

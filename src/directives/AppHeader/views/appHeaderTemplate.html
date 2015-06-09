@@ -6,87 +6,67 @@
 		<!--container-->
 		<div class="container">
 
-			<!--row-->
-			<div class="row">
+			<!--navbar-row-->
+			<div class="navbar-row">
 
 				<!--logo-->
-				<div class="col-xs-2">
+				<div class="navbar-row-col col-logo">
 					<img class="logo" src="img/logo.png" alt="">
 				</div>
 				<!--logo-->
 
-				<!--col-xs-10-->
-				<div class="col-xs-10">
+				<!--dropdown-->
+				<div class="navbar-row-col col-dropdown">
 
-					<!--wrap-->
-					<div class="wrap">
+					<!--dropdown-->
+					<div dropdown class="dropdown divider-left divider-right">
 
-						<!--wrap-col-left-->
-						<div class="wrap-col wrap-col-left">
+						<a href="#" class="dropdown-toggle" dropdown-toggle>
+							{{ currentAppName }}
+							<b class="caret"></b>
+						</a>
 
-							<!--wrap-inn-->
-							<div class="wrap-inn">
-
-								<!--wrap-inn-col-left-->
-								<div class="wrap-inn-col wrap-inn-col-left">
-
-									<!--dropdown-->
-									<div dropdown class="dropdown divider-left divider-right">
-
-										<a href="#" class="dropdown-toggle" dropdown-toggle>{{ currentAppName }} <b class="caret"></b></a>
-
-										<ul class="dropdown-menu">
-											<li ng-repeat="application in applications" ng-hide="application.name == currentAppName">
-												<a ng-href="{{application.url}}">{{application.name}}</a>
-											</li>
-										</ul>
-
-									</div>
-									<!--dropdown-->
-
-								</div>
-								<!--/wrap-inn-col-left-->
-
-
-								<!--wrap-inn-col-right-->
-								<div class="wrap-inn-col wrap-inn-col-right">
-
-									<!--transclude-->
-									<div ng-transclude>
-									</div>
-									<!--transclude-->
-
-								</div>
-								<!--/wrap-inn-col-right-->
-
-							</div>
-							<!--/wrap-inn-->
-
-						</div>
-						<!--/wrap-col-left-->
-
-
-						<!--wrap-col-right-->
-						<div class="wrap-col wrap-col-right">
-
-							<!--user-->
-							<div class="user divider-left">
-								<span class="user-name">{{ login }}</span>
-								<a href="api/logout" class="btn btn-default btn-sm">Sign out <span class="glyphicon glyphicon-signout"></span></a>
-							</div>
-							<!--/user-->
-
-						</div>
-						<!--/wrap-col-right-->
+						<ul class="dropdown-menu">
+							<li ng-repeat="application in applications" ng-hide="application.name == currentAppName">
+								<a ng-href="{{application.url}}">{{application.name}}</a>
+							</li>
+						</ul>
 
 					</div>
-					<!--/wrap-->
+					<!--dropdown-->
 
 				</div>
-				<!--col-xs-10-->
+				<!--/dropdown-->
+
+				<!--menu-->
+				<div class="navbar-row-col col-menu">
+
+					<div ng-transclude>
+					</div>
+
+				</div>
+				<!--/menu-->
+
+				<!--user-->
+				<div class="navbar-row-col col-user">
+
+					<div class="user-name" tooltip="{{ login }}" tooltip-placement="bottom">
+						{{login}}
+					</div>
+
+				</div>
+				<!--user-->
+
+				<!--col-sign-->
+				<div class="navbar-row-col col-sign">
+
+					<a href="api/logout" class="btn btn-default btn-sm">Sign out <span class="glyphicon glyphicon-signout"></span></a>
+
+				</div>
+				<!--col-sign-->
 
 			</div>
-			<!--/row-->
+			<!--/navbar-row-->
 
 		</div>
 		<!--/container-->

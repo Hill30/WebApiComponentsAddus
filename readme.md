@@ -1,3 +1,9 @@
+### v1.2.* release changelog
+
+* Angular 1.3
+
+* appHeader style updates
+
 ### v1.1.* release changelog
 
 * rules ctrl

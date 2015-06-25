@@ -4,6 +4,9 @@
 
 * appHeader style updates
 
+* ui-scroll 1.2
+
+
 ### v1.1.* release changelog
 
 * rules ctrl
@@ -11,6 +14,7 @@
 * popup refactoring (due to WebApiComponents v1.1.0)
 
 * add ui-scroll (v1.0.3) as a bower dependency
+
 
 ### v1.0.* release changelog
 

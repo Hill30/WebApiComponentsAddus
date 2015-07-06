@@ -4,7 +4,7 @@
 
 * appHeader style updates
 
-* ui-scroll 1.2
+* ui-scroll 1.2.1
 
 
 ### v1.1.* release changelog

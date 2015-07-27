@@ -2,7 +2,7 @@ angular.module('addus').controller 'templatesController', [
 	'$scope', '$rootScope', '$log', '$routeParams', '$location', 'debounce', 'popup', 'templatesResource'
 	($scope, $rootScope, console, $routeParams, $location, debounce, popup, templatesResource) ->
 
-		$rootScope.dismissNewARNotice()
+		$rootScope.dismissNewARNotice() if typeof $rootScope.dismissNewARNotice is 'function'
 		$rootScope.currentScreen = 'templates'
 
 

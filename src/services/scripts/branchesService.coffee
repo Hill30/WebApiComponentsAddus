@@ -65,11 +65,11 @@ angular.module('addus').factory('branchesService', [
 				instance.scope.teams = res
 				callback() if typeof callback is 'function'
 
-		setFilters = (instance, options = {}) ->
+		setFilters = (instance) ->
 			instance.scope.setFilter([
 				{'label': 'branches', 'value': getIdList(instance, 'branch')},
 				{'label': 'teams', 'value': getIdList(instance, 'team')}
-			], null, { ignoreRouting: options.ignoreRouting })
+			], null, { ignoreRouting: instance.options.ignoreRouting })
 
 
 		instance =
@@ -77,8 +77,10 @@ angular.module('addus').factory('branchesService', [
 			initialize: (scope, resBranches, options = {}) ->
 				self = this
 				self.scope = scope
-				return if not self.scope.branches = resBranches
-				return if options.ignoreRouting
+				self.scope.branches = resBranches
+				self.options = options
+				return if not self.scope.branches
+				return if self.options.ignoreRouting
 				if getEntitiesFromRouteParams(self, 'branch')
 					firstBranchesLoading = true
 					getTeams self, () ->
@@ -142,12 +144,12 @@ angular.module('addus').factory('branchesService', [
 			clearTeams: instance.clearTeams
 
 		return {
-		instance: (token = 'defaultInstance') ->
-			result = instances[token]
-			return result if angular.isObject(result)
-			result = angular.extend({}, instanceToExtend)
-			result.instanceToken = token
-			result.scope = null
-			result
+			instance: (token = 'defaultInstance') ->
+				result = instances[token]
+				return result if angular.isObject(result)
+				result = angular.extend({}, instanceToExtend)
+				result.instanceToken = token
+				result.scope = null
+				result
 		}
 ])

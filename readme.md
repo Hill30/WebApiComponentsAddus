@@ -6,6 +6,8 @@
 
 * ui-scroll 1.2.1
 
+* branchesService
+
 
 ### v1.1.* release changelog
 
@@ -27,7 +29,7 @@
 
 ### v0.2.* release changelog
 
-* new userInfo conception (service and resource factory)
+* new userInfo concept (service and resource factory)
 
 * deep appHeader refactoring
 

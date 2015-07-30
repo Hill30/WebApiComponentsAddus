@@ -1,4 +1,4 @@
-angular.module('app').factory('branchesService', [
+angular.module('addus').factory('branchesService', [
 	'$location', 'teamsResource'
 	($location, teamsResource) ->
 

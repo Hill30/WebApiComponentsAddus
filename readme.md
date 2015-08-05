@@ -4,7 +4,7 @@
 
 * appHeader style updates
 
-* ui-scroll 1.2.1
+* ui-scroll 1.3.1
 
 * branchesService
 

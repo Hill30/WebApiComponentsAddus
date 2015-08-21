@@ -40,7 +40,9 @@
 								</div>
 								<div class="search-results">
 									<div ui-scroll-viewport class="search-results-scroll">
-										<div class="search-results-item-wrap" ui-scroll="t in templates" is-loading="loading">
+										<div class="search-results-item-wrap"
+											 ui-scroll="t in templates"
+											 adapter="templatesAdapter">
 											<span id="autoTestId.templates.list.id{{::t.id}}"
 												  class="search-results-item"
 												  ng-class="{active: !isNew && t.id == pickedTemplate.id}"

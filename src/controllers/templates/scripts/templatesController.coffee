@@ -5,8 +5,7 @@ angular.module('addus').controller 'templatesController', [
 		$rootScope.dismissNewARNotice() if typeof $rootScope.dismissNewARNotice is 'function'
 		$rootScope.currentScreen = 'templates'
 
-
-		revisionToRequestData = 0
+		$scope.templatesAdapter = {}
 		defaultDebounceTime = 350
 
 
@@ -40,17 +39,10 @@ angular.module('addus').controller 'templatesController', [
 				options.offset = index
 				options.count = count
 				options.nameFilter = $scope.nameFilter if $scope.nameFilter
-
-				successProccessed = (result) ->
-					success(result)
-
-				templatesResource.list(options, successProccessed)
-
-			revision: () ->
-				revisionToRequestData
+				templatesResource.list(options, success)
 
 		forceDataAsyncLoad = () ->
-			revisionToRequestData++
+			$scope.templatesAdapter.reload() if $scope.templatesAdapter.reload
 
 
 		# pick, new, save, cancel, remove template
@@ -85,13 +77,13 @@ angular.module('addus').controller 'templatesController', [
 					text: "Template saved successfully."
 
 		$scope.remove = () ->
-			return if not $scope.pickedTemplate
+			return if $scope.isNew or not $scope.pickedTemplate
 			templatesResource.remove { id: $scope.pickedTemplate.id }, () ->
 				forceDataAsyncLoad()
 				popup.show
 					type: 'success'
 					text: "Template removed successfully."
-				$scope.pickedTemplate = {}
+				$scope.pickedTemplate = null
 
 
 		# start program

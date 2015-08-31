@@ -1,6 +1,6 @@
 angular.module('addus').controller 'templatesController', [
-	'$scope', '$rootScope', '$log', '$routeParams', '$location', 'debounce', 'popup', 'templatesResource'
-	($scope, $rootScope, console, $routeParams, $location, debounce, popup, templatesResource) ->
+	'$scope', '$rootScope', '$log', '$routeParams', '$location', 'debounce', 'popup', 'templatesResource', 'confirmation'
+	($scope, $rootScope, console, $routeParams, $location, debounce, popup, templatesResource, confirmation) ->
 
 		$rootScope.dismissNewARNotice() if typeof $rootScope.dismissNewARNotice is 'function'
 		$rootScope.currentScreen = 'templates'
@@ -78,12 +78,18 @@ angular.module('addus').controller 'templatesController', [
 
 		$scope.remove = () ->
 			return if $scope.isNew or not $scope.pickedTemplate
-			templatesResource.remove { id: $scope.pickedTemplate.id }, () ->
-				forceDataAsyncLoad()
-				popup.show
-					type: 'success'
-					text: "Template removed successfully."
-				$scope.pickedTemplate = null
+			deleteConfirmationDialog = confirmation.configure
+				title: 'Confirm deletion'
+				text: 'Are you sure you want to remove this template?'
+				confirmCaption: 'Remove'
+				confirmAction: () ->
+					templatesResource.remove { id: $scope.pickedTemplate.id }, () ->
+						forceDataAsyncLoad()
+						popup.show
+							type: 'success'
+							text: 'Template removed successfully.'
+						$scope.pickedTemplate = null
+			deleteConfirmationDialog.openDialog()
 
 
 		# start program

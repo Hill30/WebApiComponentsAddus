@@ -57,12 +57,12 @@ angular.module('addus').controller 'templatesController', [
 
 		$scope.newTemplate = () ->
 			resetForm()
-			$scope.originalTemplate = null
-			$scope.pickedTemplate = null
+			$scope.originalTemplate = {}
+			$scope.pickedTemplate = {}
 			$scope.isNew = true
 
 		$scope.cancel = () ->
-			$scope.pickTemplate($scope.originalTemplate)
+			$scope.pickTemplate($scope.originalTemplate) unless $scope.isNew
 			resetForm()
 
 		$scope.save = () ->

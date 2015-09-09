@@ -8,6 +8,8 @@
 
 * branchesService
 
+* templates UI improvements
+
 
 ### v1.1.* release changelog
 

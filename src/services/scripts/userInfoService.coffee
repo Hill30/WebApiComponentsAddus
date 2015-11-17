@@ -1,3 +1,6 @@
+
+### userInfoService is deprecated since v1.3.0 ###
+
 angular.module('addus').service('userInfoService', [
 	'$log', '$q', 'userInfoResource'
 	(console, $q, userInfoResource) ->

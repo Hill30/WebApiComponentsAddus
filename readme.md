@@ -1,4 +1,12 @@
-### v1.2.* release changelog
+## Release changelog
+
+### v1.3.* 
+
+* userSettingsResource and userProfileService
+* userInfoService is deprecated
+
+
+### v1.2.*
 
 * Angular 1.3
 
@@ -11,7 +19,8 @@
 * templates UI improvements
 
 
-### v1.1.* release changelog
+
+### v1.1.*
 
 * rules ctrl
 
@@ -20,7 +29,7 @@
 * add ui-scroll (v1.0.3) as a bower dependency
 
 
-### v1.0.* release changelog
+### v1.0.*
 
 * repository major refactoring
 
@@ -29,7 +38,7 @@
 * templates refactoring: directive removed, ctrl only
 
 
-### v0.2.* release changelog
+### v0.2.*
 
 * new userInfo concept (service and resource factory)
 

@@ -116,6 +116,7 @@ angular.module('addus').factory('branchesService', [
 
 			clearBranches: () ->
 				self = this
+				return if !self.scope.filters.branches or !self.scope.filters.branches.length
 				branchesCleaning = true
 				setNameList(self, 'branch', '')
 				setIdList(self, 'branch', '')
@@ -126,6 +127,7 @@ angular.module('addus').factory('branchesService', [
 
 			clearTeams: () ->
 				self = this
+				return if !self.scope.filters.teams or !self.scope.filters.teams.length
 				teamsCleaning = true
 				setNameList(self, 'team', '')
 				setIdList(self, 'team', '')

@@ -10,23 +10,19 @@ angular.module('addus').factory('userProfileService', [
 		permissions = []
 		isUserInfoInitialized = false
 		userInfoInitializedResult = {}
+		deferred = $q.defer()
 
 		self.isInitialized = () -> isUserInfoInitialized
 
 		self.initializeAsync = () ->
-			deffered = $q.defer()
-
-			if isUserInfoInitialized
-				deffered.resolve(userInfoInitializedResult)
-			else
+			if deferred.promise.$$state.status isnt 1 and not deferred.promise.$$state.pending
 				userInfoResource.get {}, (result) ->
 					userInfo = result
 					permissions = result.permissions
 					isUserInfoInitialized = true
 					userInfoInitializedResult = result
-					deffered.resolve(result)
-
-			deffered.promise
+					deferred.resolve(result)
+			deferred.promise
 
 		self.getUserInfo = -> userInfo
 

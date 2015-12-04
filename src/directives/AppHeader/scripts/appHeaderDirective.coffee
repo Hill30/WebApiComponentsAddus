@@ -1,13 +1,13 @@
 angular.module('addus').directive('appHeader', [
-	'$log', 'userInfoService'
-	(console, userInfoService) ->
+	'$log', 'userProfileService'
+	(console, userProfileService) ->
 		restrict: 'AE'
 		templateUrl: 'vendors/Addus/src/directives/AppHeader/views/appHeaderTemplate.html'
 		replace: true
 		transclude: true
-		link: (scope, element, attrs, controller) ->
-			userInfoService.initializeAsync().then (userInfo) ->
-				scope.hasPermission = userInfoService.hasPermission
+		link: (scope, element, attrs) ->
+			userProfileService.initializeAsync().then (userInfo) ->
+				scope.hasPermission = userProfileService.hasPermission
 				scope.applications = userInfo.availableApplications
 				scope.currentAppName = attrs.appName
 				url = window.location.href.split("#")[0]
@@ -20,7 +20,7 @@ angular.module('addus').directive('appHeader', [
 		'$log', '$location'
 		(console, location) ->
 			restrict: 'A'
-			link: (scope, element, attrs) ->
+			link: (scope, element) ->
 				scope.$watch (() -> location.$$url), (newLoc) ->
 					attrHref = element.attr("href")
 					attrHrefHash = attrHref.indexOf("\#")

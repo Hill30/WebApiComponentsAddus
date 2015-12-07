@@ -1,8 +1,9 @@
 angular.module('addus').factory('branchesService', [
-	'$location', 'teamsResource'
-	($location, teamsResource) ->
+	'$location', 'teamsResource', '$q'
+	($location, teamsResource, $q) ->
 
 		instances = {}
+		teamsCache = []
 
 		firstBranchesLoading = false
 		firstTeamsLoading = false
@@ -54,41 +55,76 @@ angular.module('addus').factory('branchesService', [
 			setNameList(instance, entityToken, nameStr)
 			true
 
+		immediateResolve = (deferred = $q.defer()) ->
+			deferred.resolve()
+			return deferred.promise
+
 		getTeams = (instance, callback) ->
 			if not getIdList(instance, 'branch')
 				instance.scope.teams = undefined
-				return
+				return immediateResolve()
 			setIdList(instance, 'team', '')
 			setNameList(instance, 'team', '')
-			teamsResource.get {branches: getIdList(instance, 'branch')}, (res) ->
-				item.name = item.displayString for item in res
-				instance.scope.teams = res
+
+			processTeamsResult = (teamsResult) ->
+				item.name = item.displayString for item in teamsResult
+				instance.scope.teams = teamsResult
 				callback() if typeof callback is 'function'
 
-		setFilters = (instance) ->
+			branchIdList = getIdList(instance, 'branch')
+			for item in teamsCache
+				if item.branchIdList is branchIdList
+					processTeamsResult(item.teams)
+					return immediateResolve()
+
+			return teamsResource.get({branches: branchIdList}, (teamsResult) ->
+				teamsCache.push
+					branchIdList: branchIdList
+					teams: teamsResult
+				processTeamsResult(teamsResult)
+			).$promise
+
+		setFilters = (instance, options) ->
+			return if !instance.hasInitialized
+			setFilterOptions = {}
+			angular.extend(setFilterOptions, options)
+			setFilterOptions.ignoreRouting = instance.options.ignoreRouting
 			instance.scope.setFilter([
 				{'label': 'branches', 'value': getIdList(instance, 'branch')},
 				{'label': 'teams', 'value': getIdList(instance, 'team')}
-			], null, { ignoreRouting: instance.options.ignoreRouting })
+			], null, setFilterOptions)
 
 
 		instance =
 
 			initialize: (scope, resBranches, options = {}) ->
 				self = this
+				self.hasInitialized = false
+				initDone = ->
+					self.hasInitialized = true
+					return immediateResolve()
+
 				self.scope = scope
 				self.scope.branches = resBranches
 				self.options = options
-				return if not self.scope.branches
-				return if self.options.ignoreRouting
-				if getEntitiesFromRouteParams(self, 'branch')
-					firstBranchesLoading = true
-					getTeams self, () ->
-						firstTeamsLoading = true if getEntitiesFromRouteParams(self, 'team')
+				return initDone() if not self.scope.branches
+				return initDone() if self.options.ignoreRouting
 
-			reset: () ->
+				if getEntitiesFromRouteParams(self, 'branch')
+					if $location.search()['teams']
+						scope.setFilter([
+							{'label': 'branches', 'value': $location.search()['branches']},
+							{'label': 'teams', 'value': $location.search()['teams']}
+						], null, { ignoreRouting: true })
+						return getTeams self, ->
+							self.hasInitialized = true
+							firstTeamsLoading = true if (getEntitiesFromRouteParams(self, 'team'))
+
+				return initDone()
+
+			reset: (options) ->
 				self = this
-				self.clearBranches()
+				self.clearBranches(options)
 				firstBranchesLoading = false
 				firstTeamsLoading = false
 				branchesCleaning = false
@@ -114,7 +150,7 @@ angular.module('addus').factory('branchesService', [
 				return firstTeamsLoading = false if firstTeamsLoading
 				setFilters(self)
 
-			clearBranches: () ->
+			clearBranches: (options) ->
 				self = this
 				return if !self.scope.filters.branches or !self.scope.filters.branches.length
 				branchesCleaning = true
@@ -122,17 +158,17 @@ angular.module('addus').factory('branchesService', [
 				setIdList(self, 'branch', '')
 				self.scope.filters.branches = []
 				self.scope.teams = undefined
-				return self.clearTeams() if self.scope.filters.teams and self.scope.filters.teams.length
-				setFilters(self)
+				return self.clearTeams(options) if self.scope.filters.teams and self.scope.filters.teams.length
+				setFilters(self, options)
 
-			clearTeams: () ->
+			clearTeams: (options) ->
 				self = this
 				return if !self.scope.filters.teams or !self.scope.filters.teams.length
 				teamsCleaning = true
 				setNameList(self, 'team', '')
 				setIdList(self, 'team', '')
 				self.scope.filters.teams = []
-				setFilters(self)
+				setFilters(self, options)
 
 
 		instanceToExtend =
@@ -146,12 +182,12 @@ angular.module('addus').factory('branchesService', [
 			clearTeams: instance.clearTeams
 
 		return {
-			instance: (token = 'defaultInstance') ->
-				result = instances[token]
-				return result if angular.isObject(result)
-				result = angular.extend({}, instanceToExtend)
-				result.instanceToken = token
-				result.scope = null
-				result
+		instance: (token = 'defaultInstance') ->
+			result = instances[token]
+			return result if angular.isObject(result)
+			result = angular.extend({}, instanceToExtend)
+			result.instanceToken = token
+			result.scope = null
+			result
 		}
 ])

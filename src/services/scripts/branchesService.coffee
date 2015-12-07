@@ -84,7 +84,7 @@ angular.module('addus').factory('branchesService', [
 				processTeamsResult(teamsResult)
 			).$promise
 
-		setFilters = (instance, options) ->
+		setFilters = (instance, options = {}) ->
 			return if !instance.hasInitialized
 			setFilterOptions = {}
 			angular.extend(setFilterOptions, options)

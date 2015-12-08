@@ -70,6 +70,7 @@ angular.module('addus').factory('branchesService', [
 
 			setIdList(instance, 'team', '')
 			setNameList(instance, 'team', '')
+			instance.scope.teams = []
 
 			processTeamsResult = (teamsResult) ->
 				item.name = item.displayString for item in teamsResult

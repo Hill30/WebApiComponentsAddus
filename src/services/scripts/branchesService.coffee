@@ -63,9 +63,7 @@ angular.module('addus').factory('branchesService', [
 			branchIdList = getIdList(instance, 'branch')
 
 			# a duplicate request while original one is still pending (and not in cache)
-			if instance.teamsRequest and
-				instance.teamsRequest.branchIdList is branchIdList and
-				instance.teamsRequest.promise.$$state.status is 0
+			if instance.teamsRequest and instance.teamsRequest.branchIdList is branchIdList and instance.teamsRequest.promise.$$state.status is 0
 				return
 
 			setIdList(instance, 'team', '')

@@ -55,14 +55,19 @@ angular.module('addus').factory('branchesService', [
 			setNameList(instance, entityToken, nameStr)
 			true
 
-		immediateResolve = (deferred = $q.defer()) ->
-			deferred.resolve()
-			return deferred.promise
-
 		getTeams = (instance, callback) ->
 			if not getIdList(instance, 'branch')
 				instance.scope.teams = undefined
-				return immediateResolve()
+				return
+
+			branchIdList = getIdList(instance, 'branch')
+
+			# a duplicate request while original one is still pending (and not in cache)
+			if instance.teamsRequest and
+				instance.teamsRequest.branchIdList is branchIdList and
+				instance.teamsRequest.promise.$$state.status is 0
+				return
+
 			setIdList(instance, 'team', '')
 			setNameList(instance, 'team', '')
 
@@ -71,13 +76,13 @@ angular.module('addus').factory('branchesService', [
 				instance.scope.teams = teamsResult
 				callback() if typeof callback is 'function'
 
-			branchIdList = getIdList(instance, 'branch')
 			for item in teamsCache
 				if item.branchIdList is branchIdList
 					processTeamsResult(item.teams)
-					return immediateResolve()
+					return
 
-			return teamsResource.get({branches: branchIdList}, (teamsResult) ->
+			instance.teamsRequest = { branchIdList: branchIdList }
+			instance.teamsRequest.promise = teamsResource.get({branches: branchIdList}, (teamsResult) ->
 				teamsCache.push
 					branchIdList: branchIdList
 					teams: teamsResult
@@ -100,9 +105,7 @@ angular.module('addus').factory('branchesService', [
 			initialize: (scope, resBranches, options = {}) ->
 				self = this
 				self.hasInitialized = false
-				initDone = ->
-					self.hasInitialized = true
-					return immediateResolve()
+				initDone = -> self.hasInitialized = true
 
 				self.scope = scope
 				self.scope.branches = resBranches
@@ -117,8 +120,8 @@ angular.module('addus').factory('branchesService', [
 							{'label': 'teams', 'value': $location.search()['teams']}
 						], null, { ignoreRouting: true })
 						return getTeams self, ->
-							self.hasInitialized = true
 							firstTeamsLoading = true if (getEntitiesFromRouteParams(self, 'team'))
+							initDone()
 
 				return initDone()
 
